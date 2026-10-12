@@ -103,6 +103,7 @@ td.res{background:color-mix(in srgb,var(--accent) 7%,transparent)}
 .mnorth{position:absolute;right:5px;top:5px;width:27px;height:27px;border-radius:50%;background:var(--chipbg);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;font-size:9px}
 .mnorth b{font-weight:700}
 :root{--chipbg:rgba(247,249,248,.82)}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--chipbg:rgba(27,37,43,.82)}}:root[data-theme="dark"]{--chipbg:rgba(27,37,43,.82)}:root[data-theme="light"]{--chipbg:rgba(247,249,248,.82)}
+.roval{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:20px;font-weight:600}
 .skyro{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:10px;font-size:14px;font-weight:600;line-height:1.2}.skyro small{font-weight:400;color:var(--muted)}
 .note{font-size:14px;color:var(--muted);max-width:75ch}
 .warn{background:var(--warnbg);border-left:3px solid var(--accent);padding:8px 10px;font-size:14px;margin:8px 0;border-radius:3px}
@@ -234,10 +235,10 @@ footer{margin-top:22px;font-size:13px;color:var(--muted);display:flex;flex-wrap:
   </div>
 
   <section id="tab-days" class="panel" role="tabpanel" aria-labelledby="t-days">
-    <p class="note">Escribe el pronóstico oficial para Tacubaya (SMN, Protección Civil o tu fuente de confianza) y la app lo ajusta a la zona elegida. Despejado y en calma agranda las diferencias entre zonas. El cielo de noche sale siempre del pronóstico automático de cada fecha y no se puede cambiar; si una fecha queda fuera (de 7 días atrás a 16 adelante), se usa un cielo típico y la etiqueta lo dice.</p>
+    <p class="note">El pronóstico de los próximos días se carga automáticamente y no se puede modificar; la app lo ajusta a la zona elegida. Despejado y en calma agranda las diferencias entre zonas. El cielo de noche sale siempre del pronóstico automático de cada fecha y no se puede cambiar; si una fecha queda fuera (de 7 días atrás a 16 adelante), se usa un cielo típico y la etiqueta lo dice.</p>
     <div id="staleMsg"></div>
     <div class="scroll"><table id="daysTbl"></table></div>
-    <div class="controls"><button type="button" id="fcBtn">Traer pronóstico automático</button><button type="button" id="addDay">Agregar día</button><button type="button" class="ghost" id="resetDays">Volver al pronóstico de ejemplo</button></div>
+    <div class="controls"><button type="button" id="fcBtn">Traer pronóstico automático</button></div>
     <p class="small" id="fcStatus" role="status"></p>
     <p class="small">Los días de ejemplo son valores ilustrativos: usa «Traer pronóstico automático» para ver el pronóstico real.</p>
   </section>
@@ -323,11 +324,11 @@ footer{margin-top:22px;font-size:13px;color:var(--muted);display:flex;flex-wrap:
     <h3>El invierno 2026-27</h3>
     <p><b>Temperatura:</b> tendencia de calentamiento de +0.385 °C por década (reanálisis ERA5 de Tacubaya, 75 inviernos; las estaciones del SMN del poniente la confirman) extrapolada a 2027. <b>El Niño casi no cambia la temperatura de invierno aquí</b> (de +0.02 a +0.03 °C por °C de ONI según el método, indistinguible de cero), de modo que el pronóstico es climatológico más tendencia: 0.9 °C más cálido que la normal 1991-2020 (rango de 8 de cada 10 escenarios: de +0.1 a +1.7 °C). <b>Lluvia:</b> distribución Gamma con la media y la variabilidad de cuatro estaciones del poniente (1961-2010) y una señal de El Niño de ×1.4, con mucha incertidumbre. <b>Frío extremo:</b> distribución Gumbel con 17 inviernos de Tacubaya (mediana de la noche más fría: unos 3.3 °C; 10 % de probabilidad de llegar a 0 °C).</p>
     <p><b>Qué tan firme es la lluvia.</b> De diciembre a febrero llueve poco: unos 21 mm en promedio (mediana 15 mm) en las estaciones del poniente, y de forma muy irregular: en 1 de cada 10 inviernos pasa de 45 mm y en otro 1 de cada 10 no llega a 3 mm. El Niño suele traer más lluvia (×1.4 en el reanálisis ERA5, p = 0.015), pero ERA5 sobrestima la lluvia de la temporada seca (61 mm contra unos 20 mm medidos), así que solo se usa su cambio relativo. Con un Niño muy fuerte hay pocos casos y la señal no está confirmada.</p>
-    <p><b>Pronóstico automático.</b> Los próximos días pueden cargarse desde Open-Meteo, un modelo global del punto de la estación de Tacubaya. A diferencia de lo hecho para Monterrey, no se comparó con las mediciones de Tacubaya, así que no se conoce su sesgo aquí: úsalo como referencia y, si tienes el pronóstico oficial, escribe a mano las temperaturas y la lluvia. El cielo de noche se clasifica por la nubosidad media de 00 a 08 h (despejado si es menor de 25 %, medio despejado menor de 50 %, medio nublado menor de 75 %, nublado en los demás casos) y se mezcla con la noche con frente según un peso de 1, ⅔, ⅓ o 0 para la noche despejada y en calma; con viento medio de 10 km/h o más la noche se trata como nublada. Esos pesos intermedios son una regla de la app, no un coeficiente calibrado. El cielo de cada día, también el de los días que escribes a mano, se toma del pronóstico automático de esa misma fecha (de 7 días atrás a 16 adelante) y no se elige a mano; si la fecha no está ahí, se usa un cielo típico: la proporción de noches despejadas del modelo (45 %), no se supone nublado.</p>
+    <p><b>Pronóstico automático.</b> Los próximos días pueden cargarse desde Open-Meteo, un modelo global del punto de la estación de Tacubaya. A diferencia de lo hecho para Monterrey, no se comparó con las mediciones de Tacubaya, así que no se conoce su sesgo aquí: úsalo como referencia: es una predicción y no se puede modificar. El cielo de noche se clasifica por la nubosidad media de 00 a 08 h (despejado si es menor de 25 %, medio despejado menor de 50 %, medio nublado menor de 75 %, nublado en los demás casos) y se mezcla con la noche con frente según un peso de 1, ⅔, ⅓ o 0 para la noche despejada y en calma; con viento medio de 10 km/h o más la noche se trata como nublada. Esos pesos intermedios son una regla de la app, no un coeficiente calibrado. El cielo de cada día se toma del pronóstico automático de esa misma fecha (de 7 días atrás a 16 adelante) y no se elige a mano; si la fecha no está ahí, se usa un cielo típico: la proporción de noches despejadas del modelo (45 %), no se supone nublado.</p>
     <h3>Límites</h3>
     <p>Estaciones del SMN de 1961 a 2012 (el modelo reproduce sus mínimas con un error típico de 1.6 °C); urbanización y terreno de cada zona son estimaciones; relieve con curvas de nivel de 100 m y límites municipales de OpenStreetMap, sin ríos ni carreteras. La señal de El Niño en la temperatura es débil: el pronóstico es sobre todo tendencia. Es un pronóstico de probabilidades, no del tiempo de un día. Para alertas, sigue al SMN y a Protección Civil de la CDMX y del Estado de México.</p>
     <h3>Fuentes</h3>
-    <p class="small">ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0). Versión de la app: <b>4446ef1</b>.</p>
+    <p class="small">ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0). Versión de la app: <b>e47382c</b>.</p>
   </section>
 
   <footer><span>Versión 1 del modelo, emitida el 5 de octubre de 2026. Revisa las actualizaciones de NOAA (8 oct y 19 nov de 2026) y los avisos del SMN.</span><span><a href="../" style="color:var(--cold);font-weight:600">Versión para celular</a> · <button class="link" type="button" id="resetAll">Borrar todos mis ajustes</button></span></footer>
@@ -687,25 +688,24 @@ function renderZone(){
 /* ================= Próximos días ================= */
 function renderDays(){
   var z=BYID[cur], t=document.getElementById("daysTbl"), zn=esc(z.ln||z.n);
-  var h='<thead><tr><th></th><th class="grp" colspan="4">Pronóstico para Tacubaya (escríbelo)</th><th class="grp res" colspan="3">Resultado en '+zn+'</th><th></th></tr>'+
-        '<tr><th>Fecha</th><th>Máx. °C</th><th>Mín. °C</th><th>Lluvia mm</th><th style="text-align:left">Cielo de noche</th><th>Máx.</th><th>Mín.</th><th>Lluvia</th><th><span class="sr">Acciones</span></th></tr></thead><tbody>';
+  var h='<thead><tr><th></th><th class="grp" colspan="4">Pronóstico para Tacubaya (automático)</th><th class="grp res" colspan="3">Resultado en '+zn+'</th></tr>'+
+        '<tr><th>Fecha</th><th>Máx. °C</th><th>Mín. °C</th><th>Lluvia mm</th><th style="text-align:left">Cielo de noche</th><th>Máx.</th><th>Mín.</th><th>Lluvia</th></tr></thead><tbody>';
   days.forEach(function(d,i){
     h+='<tr data-row="'+i+'">'+
-      '<td class="wide" data-l="Fecha"><span style="display:flex;gap:8px;align-items:center"><input type="date" aria-label="Fecha" data-i="'+i+'" data-k="d" value="'+esc(d.d)+'"><span class="small" data-wd>'+dayLabel(d.d)+'</span></span></td>'+
-      '<td data-l="Máx. Tacubaya"><input type="number" aria-label="Máxima en Tacubaya, °C" data-i="'+i+'" data-k="tx" value="'+d.tx+'" step="0.5" min="-15" max="50"></td>'+
-      '<td data-l="Mín. Tacubaya"><input type="number" aria-label="Mínima en Tacubaya, °C" data-i="'+i+'" data-k="tn" value="'+d.tn+'" step="0.5" min="-15" max="40"></td>'+
-      '<td data-l="Lluvia mm"><input type="number" aria-label="Lluvia en Tacubaya, mm" data-i="'+i+'" data-k="p" value="'+d.p+'" min="0" max="600" step="1"></td>'+
+      '<td class="wide" data-l="Fecha"><span style="display:flex;gap:8px;align-items:baseline"><b data-wd>'+dayLabel(d.d)+'</b><span class="small">'+esc(d.d.split("-").reverse().join("/"))+'</span></span></td>'+
+      '<td data-l="Máx. pronóstico"><span class="roval">'+f1(d.tx)+' °C</span></td>'+
+      '<td data-l="Mín. pronóstico"><span class="roval">'+f1(d.tn)+' °C</span></td>'+
+      '<td data-l="Lluvia"><span class="roval">'+f1(d.p)+' mm</span></td>'+
       '<td class="wide" data-l="Cielo de noche">'+skyHtml(d)+'</td>'+
       '<td class="res" data-l="Máx. aquí"><span class="out" data-o="tx"></span></td>'+
       '<td class="res" data-l="Mín. aquí"><span class="out cold" data-o="tn"></span></td>'+
-      '<td class="res" data-l="Lluvia aquí"><span class="out" data-o="p"></span></td>'+
-      '<td data-l=""><button class="ghost" type="button" data-del="'+i+'" aria-label="Quitar '+dayLabel(d.d)+'">Quitar</button></td></tr>';
+      '<td class="res" data-l="Lluvia aquí"><span class="out" data-o="p"></span></td></tr>';
   });
-  if(!days.length) h+='<tr><td colspan="9" class="small">No hay días. Usa «Agregar día» para escribir el pronóstico.</td></tr>';
+  if(!days.length) h+='<tr><td colspan="8" class="small">No hay pronóstico cargado. Toca «Traer pronóstico automático».</td></tr>';
   t.innerHTML=h+'</tbody>';
   updateDayOutputs();
 }
-// Actualiza solo los resultados, sin redibujar la tabla (así no se pierde el foco al escribir)
+// Actualiza solo los resultados, sin redibujar la tabla
 function updateDayOutputs(){
   var z=BYID[cur], o=offs(z);
   document.querySelectorAll("#daysTbl tr[data-row]").forEach(function(tr){
@@ -722,35 +722,9 @@ function checkStale(){
   if(!days.length) return;
   var last=days.map(function(d){return d.d;}).sort().pop(), now=new Date();
   var today=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
-  if(last<today){ box.innerHTML='<div class="warn">Todos los días de la tabla ya pasaron. Escribe el pronóstico vigente para que los resultados por zona sirvan hoy.</div>'; }
+  if(last<today){ box.innerHTML='<div class="warn">Todos los días de la tabla ya pasaron. Toca «Traer pronóstico automático» para actualizarlo.</div>'; }
 }
 function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
-var daysTbl=document.getElementById("daysTbl");
-daysTbl.addEventListener("input",function(ev){
-  var i=ev.target.getAttribute("data-i"), k=ev.target.getAttribute("data-k"); if(i===null||!days[+i]) return;
-  var v=ev.target.value;
-  if(k==="tx"||k==="tn"||k==="p"){
-    var x=parseFloat(v), mn=num(ev.target.min,-99), mx=num(ev.target.max,999);
-    if(!isFinite(x)||x<mn||x>mx){ ev.target.setAttribute("aria-invalid","true"); return; }
-    ev.target.removeAttribute("aria-invalid"); v=(k==="p")?Math.max(0,x):x;
-  }
-  if(k==="d" && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return;
-  days[+i][k]=v; saveDays(); if(k==="d") refreshSky(+i); updateDayOutputs();
-  if(+i===0 && document.getElementById("mapMetric").value==="day") drawPoints();
-});
-daysTbl.addEventListener("change",function(ev){ if(ev.target.tagName==="SELECT") ev.target.dispatchEvent(new Event("input",{bubbles:true})); });
-daysTbl.addEventListener("click",function(ev){
-  var b=ev.target.closest("[data-del]"); if(!b) return;
-  days.splice(+b.getAttribute("data-del"),1); saveDays(); renderDays(); drawPoints();
-});
-document.getElementById("addDay").addEventListener("click",function(){
-  var last=days[days.length-1], d;
-  if(last){ var p=last.d.split("-"), dt=new Date(+p[0],+p[1]-1,+p[2]+1); d=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0"); }
-  else { var n=new Date(); d=n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"); }
-  days.push({d:d,tx:last?last.tx:24,tn:last?last.tn:15,p:0,c:last?last.c:"nub"}); saveDays(); renderDays(); drawPoints();
-  var inputs=daysTbl.querySelectorAll('tr[data-row="'+(days.length-1)+'"] input[data-k="tx"]'); if(inputs[0]) inputs[0].focus();
-});
-document.getElementById("resetDays").addEventListener("click",function(){ days=clone(DEFAULT_DAYS); saveDays(); renderDays(); drawPoints(); });
 
 /* ================= Invierno ================= */
 function renderWinter(){
@@ -884,7 +858,7 @@ document.getElementById("elevIn").addEventListener("change",function(ev){
 document.getElementById("terrIn").addEventListener("change",function(ev){ BYID[cur].t=ev.target.value; storeEdit(); });
 document.getElementById("resetZ").addEventListener("click",function(){ var z=BYID[cur]; z.e=z.e0; z.t=z.t0; z.lat=z.lat0; z.lon=z.lon0; storeEdit(); });
 document.getElementById("resetAll").addEventListener("click",function(){
-  if(!confirm("¿Borrar tus altitudes, terrenos y el pronóstico escrito?")) return;
+  if(!confirm("¿Borrar tus altitudes, terrenos y el pronóstico guardado?")) return;
   ZONES.forEach(function(z){z.e=z.e0;z.t=z.t0;z.lat=z.lat0;z.lon=z.lon0;}); edits={}; days=clone(DEFAULT_DAYS); cur=HOME;
   save("edits",edits); saveDays(); save("zone",cur); renderAll();
 });
@@ -908,15 +882,15 @@ function select(id,keepFocus){
 }
 function renderAll(){ renderZone(); drawPoints(); renderDays(); renderWinter(); renderRank(); }
 
-/* ---- Pronóstico automático: solo reemplaza los días si el usuario no los ha escrito a mano ---- */
-var fc=load("fc",null); if(!fc||typeof fc!=="object") fc={t:0,auto:true}; fc.t=+fc.t||0;
+/* ---- Pronóstico automático: el pronóstico de los días es de solo lectura: se reemplaza únicamente con el automático ---- */
+var fc=load("fc",null); if(!fc||typeof fc!=="object") fc={t:0,auto:true}; fc.t=+fc.t||0; fc.auto=true;
 var fcBusy=false;
 var fs=load("fcsky",null); if(fs&&typeof fs==="object") SKYMAP=fs;
 function guardarSky(nd){ var m={}, lim=Date.now()-30*864e5; Object.keys(SKYMAP).forEach(function(k){ if(new Date(k).getTime()>lim) m[k]=SKYMAP[k]; }); Object.keys(nd).forEach(function(k){ m[k]={c:nd[k].c,v:nd[k].v}; }); SKYMAP=m; save("fcsky",m); }
 function refreshSky(i){ var h=document.querySelector('[data-row="'+i+'"] .skyro'); if(h&&days[i]) h.outerHTML=skyHtml(days[i]); }
 function setFcMsg(txt){ var el=document.getElementById("fcStatus"); if(!el) return;
-  el.textContent = txt || (fc.auto&&fc.t ? "Pronóstico automático de Open-Meteo para Tacubaya, actualizado el "+fcLabel(fc.t)+". Es un modelo global, no el pronóstico oficial del SMN: úsalo como referencia. Frente a la estación oficial, la máxima automática suele salir de 1 a 3 °C más baja y, en noches muy frías, la mínima puede salir 1 a 1.5 °C más cálida." : "Días escritos a mano o de ejemplo. Usa «Traer pronóstico automático» para cargar el de Open-Meteo."); }
-function saveDays(){ save("days",days); fc.auto=false; save("fc",fc); setFcMsg(); }
+  el.textContent = txt || (fc.auto&&fc.t ? "Pronóstico automático de Open-Meteo para Tacubaya, actualizado el "+fcLabel(fc.t)+". Es un modelo global, no el pronóstico oficial del SMN: úsalo como referencia. Frente a la estación oficial, la máxima automática suele salir de 1 a 3 °C más baja y, en noches muy frías, la mínima puede salir 1 a 1.5 °C más cálida." : "Pronóstico de ejemplo, solo ilustrativo: aún no se carga el automático. Usa «Traer pronóstico automático»."); }
+function saveDays(){ save("days",days); }
 function traerPronostico(){
   if(fcBusy) return; fcBusy=true; var b=document.getElementById("fcBtn"); if(b) b.disabled=true; setFcMsg("Consultando Open-Meteo…");
   var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){ if(ctl) ctl.abort(); },12000);
@@ -926,10 +900,9 @@ function traerPronostico(){
     .then(function(){ clearTimeout(to); fcBusy=false; if(b) b.disabled=false; });
 }
 document.getElementById("fcBtn").addEventListener("click",function(){
-  if(fc.auto===false && !window.confirm("Esto reemplaza los días que escribiste a mano. ¿Continuar?")) return;
   traerPronostico();
 });
-if(navigator.onLine!==false && fc.auto!==false && Date.now()-fc.t>FC_MAX_EDAD_MS) traerPronostico(); else setFcMsg();
+if(navigator.onLine!==false && Date.now()-fc.t>FC_MAX_EDAD_MS) traerPronostico(); else setFcMsg();
 buildMap(); renderAll();
 })();
 </script>
