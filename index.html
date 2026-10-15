@@ -264,7 +264,7 @@ nav.tabs svg{width:22px;height:22px}
     <h3>Límites</h3>
     <p>Estaciones del SMN de 1961 a 2012 (el modelo reproduce sus mínimas con un error típico de 1.6 °C); la urbanización de cada zona sale de la densidad de calles de OpenStreetMap en 500 m (con ella el error típico de las mínimas baja a 1.4 °C en esas estaciones, aunque son de 1961-2012 y el mapa es actual); el terreno de cada zona es una estimación; relieve con curvas de nivel de 50 m, límites municipales, carreteras, ríos y áreas verdes de OpenStreetMap. La señal de El Niño en la temperatura es débil: el pronóstico es sobre todo tendencia. Es un pronóstico de probabilidades, no del tiempo de un día. Para alertas, sigue al SMN y a Protección Civil de la CDMX y del Estado de México.</p>
     <p><a href="escritorio/" style="color:var(--cold);font-weight:600">Abrir la versión de escritorio</a>, con la tabla de método completa, la gráfica de El Niño contra la temperatura y más detalle.</p>
-    <p class="small">Versión de la app: <b>a02af8f</b>. Modelo emitido el 5 de octubre de 2026. Fuentes: ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0).</p>
+    <p class="small">Versión de la app: <b>4e0289a</b>. Modelo emitido el 5 de octubre de 2026. Fuentes: ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0).</p>
   </div>
 </div>
 
@@ -952,7 +952,7 @@ function traerPronostico(){
   var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){ if(ctl) ctl.abort(); },12000);
   fetch(FC_URL, ctl?{signal:ctl.signal}:{}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(j){ var r=parseForecast(j,hoyISO()); if(!r) throw new Error("vacío"); guardarSky(r.cielo); days=r.dias; save("days",days); fc={t:Date.now(),auto:true}; save("fc",fc); renderAll(); setFcMsg(); })
-    .catch(function(){ setFcMsg("No se pudo obtener el pronóstico automático (sin conexión o servicio no disponible). Se conservan los días actuales."); })
+    .catch(function(e){ setFcMsg(e&&e.message==="429" ? "Open-Meteo alcanzó su límite diario de consultas para esta red (el límite es por conexión a internet, no de la app). Se conservan los días actuales: reintenta más tarde o con datos móviles." : "No se pudo obtener el pronóstico automático (sin conexión o servicio no disponible). Se conservan los días actuales."); })
     .then(function(){ clearTimeout(to); fcBusy=false; if(b) b.disabled=false; });
 }
 document.getElementById("fcBtn").addEventListener("click",function(){
