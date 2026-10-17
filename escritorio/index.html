@@ -335,11 +335,12 @@ footer{margin-top:22px;font-size:13px;color:var(--muted);display:flex;flex-wrap:
     <p><b>Ciclones tropicales.</b> Los ciclones del Pacífico y del Atlántico casi no tocan el invierno: de diciembre a febrero ningún ciclón se acercó a menos de 500 km de Tacubaya en 46 años (1980-2025) y en noviembre solo uno (a 800 km, seis años de 46). Sí pesan en la temporada de lluvias: a 500 km aportan 7.7 % de la lluvia de octubre (IC95 de 4.0 a 11.7 %) y a 800 km, 22 % (17 a 27 %); de junio a septiembre, entre 6 y 8 %. La cantidad de ciclones de una temporada no predice la lluvia del invierno siguiente una vez descontado El Niño (correlación parcial +0.20, IC95 de −0.10 a +0.45, p = 0.18); con la temperatura de Tacubaya salió +0.30 (IC95 de +0.01 a +0.54, p = 0.045), pero no resiste la corrección por pruebas múltiples (q = 0.13), así que no entra en el modelo del invierno. Lo que sí cambia es el pronóstico del día: con un ciclón cerca (jun-nov de 2023 a 2025, 14 días con estación) el pronóstico sobrestimó la lluvia 12 mm en promedio (IC95 de +4 a +19; error absoluto de 12 mm contra 3.5 mm en los demás días). Fuente: IBTrACS (NOAA), ERA5 y la estación de Tacubaya.</p>
     <p><b>Lluvia: varios modelos.</b> La lluvia que muestra la app es la mediana de cuatro modelos (ECMWF, GFS, ICON y GEM) y se muestra su rango, no la de un solo modelo, que con la lluvia es muy inestable (el 16 de octubre de 2026 en Monterrey dio 6.8 mm cuando tres modelos daban de 18 a 33 mm y llovió mucho). Con 265 días de 2024 contra la estación de Tacubaya, la mediana se equivocó 3.0 mm por día contra 3.4 mm del modelo único (diferencia no significativa), y ningún modelo predice bien la lluvia puntual. La app avisa «riesgo de lluvia fuerte» cuando al menos 2 de los 4 modelos dan 5 mm o más: así avisó 11 de los 16 días de lluvia fuerte (69 %, contra 31 % con un solo modelo), a costa de 59 falsas alarmas; de cada 100 avisos, solo 16 tuvieron lluvia fuerte (la frecuencia normal es 6 de cada 100 días). Es un solo año de validación.</p>
     <p><b>Probabilidad de lluvia.</b> No se usa la probabilidad que ofrece Open-Meteo: en 2024 decía 70 a 100 % la mayoría de los días y llovió 1 mm o más solo el 39 % de esos días (peor que usar siempre la frecuencia normal: habilidad −54 % en Monterrey y −61 % en Tacubaya). La app calcula la suya con cuántos de los 4 modelos dan 1 mm o más y la calibra con lo que pasó en la estación: con 0 modelos 1 %, con 1 7 %, con 2 21 %, con 3 21 % y con los 4 40 %. Validada dejando un mes fuera, mejora a la frecuencia normal en 19 % (Tacubaya, 265 días de 2024). Es la probabilidad de 1 mm o más en la estación, no de lluvia fuerte (para lluvia fuerte en Tacubaya no hubo habilidad, por eso no se muestra); son pocos días por categoría y un solo año.</p>
+    <p><b>Aviso de ciclón tropical.</b> La app consulta en GDACS (ONU y Comisión Europea) los ciclones activos y avisa si alguno está a menos de 800 km (a menos de 500 km, «cerca»), con la distancia calculada aquí desde el punto de referencia del pronóstico; no se envía tu ubicación. Se hace así porque entre octubre y noviembre un ciclón cerca cambia la lluvia: a 500 km aportan 7.7 % de la lluvia de octubre en Tacubaya y a 800 km 22 %, y el pronóstico de lluvia se equivoca mucho más. Solo se muestra posición y distancia, no intensidad, porque GDACS da el viento máximo de toda la vida del ciclón y no el actual; para eso hay un enlace al Centro Nacional de Huracanes. Si la consulta falla o los datos tienen más de 12 horas, no se afirma que no haya ciclones.</p>
     <p><b>Pronóstico automático.</b> Los próximos días pueden cargarse desde Open-Meteo, un modelo global del punto de la estación de Tacubaya. Se comparó con las mediciones de la estación de Tacubaya entre 2023 y 2025 (713 días con pronóstico archivado): la máxima salió en promedio 1.3 °C más baja (IC95 de 1.2 a 1.4; 1.1 °C en invierno) y la mínima 0.8 °C más baja (IC95 de 0.6 a 0.9; 1.5 °C en invierno). Se excluyeron 2022 (el pronóstico archivado de ese año viene de un modelo anterior) y 2026 (el registro de la estación marca máximas de 30 a 33 °C en pleno verano lluvioso y le faltan enero a marzo). Ese sesgo no es estable (la mínima, de −0.4 a −1.3 °C según el año), así que la corrección es parcial: se calcula con los otros años y se mide en el año retenido, se aplica solo si mejoró en la mayoría de los años sin empeorar el más reciente, y entre intensidades casi iguales se usa la menor. Resultado: se suma +1.5 °C de junio a septiembre y +0.8 °C en octubre y noviembre a la máxima y +1.6 °C de diciembre a febrero y +0.7 °C de marzo a mayo a la mínima; el resto no se corrige porque la corrección no mejoró el error en años que no se usaron para calcularla. Debajo de cada temperatura se muestra el valor original de Open-Meteo. La lluvia no se corrige: de diciembre a febrero el pronóstico anuncia lluvia 14 días contra 2 observados y suma ocho veces más agua, pero solo hubo 2 días de lluvia observada en tres inviernos, muy pocos para calibrar. Úsalo como referencia: es una predicción y no se puede modificar. El cielo de noche se clasifica por la nubosidad media de 00 a 08 h (despejado si es menor de 25 %, medio despejado menor de 50 %, medio nublado menor de 75 %, nublado en los demás casos) y se mezcla con la noche con frente según un peso de 1, ⅔, ⅓ o 0 para la noche despejada y en calma; con viento medio de 10 km/h o más la noche se trata como nublada. Esos pesos intermedios son una regla de la app, no un coeficiente calibrado. El cielo de cada día se toma del pronóstico automático de esa misma fecha (de 7 días atrás a 16 adelante) y no se elige a mano; si la fecha no está ahí, se usa un cielo típico: la proporción de noches despejadas del modelo (45 %), no se supone nublado.</p>
     <h3>Límites</h3>
     <p>Estaciones del SMN de 1961 a 2012 (el modelo reproduce sus mínimas con un error típico de 1.6 °C); la urbanización de cada zona sale de la densidad de calles de OpenStreetMap en 500 m (con ella el error típico de las mínimas baja a 1.4 °C en esas estaciones, aunque son de 1961-2012 y el mapa es actual); el terreno de cada zona es una estimación; relieve con curvas de nivel de 50 m, límites municipales, carreteras, ríos y áreas verdes de OpenStreetMap. La señal de El Niño en la temperatura es débil: el pronóstico es sobre todo tendencia. Es un pronóstico de probabilidades, no del tiempo de un día. Para alertas, sigue al SMN y a Protección Civil de la CDMX y del Estado de México.</p>
     <h3>Fuentes</h3>
-    <p class="small">ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0). Versión de la app: <b>b62ab4c</b>.</p>
+    <p class="small">ERA5 (Copernicus/ECMWF) vía Open-Meteo; NOAA CPC (ONI, ENSO); NOAA NCEI GHCN-Daily (estaciones del SMN: Tacubaya, Molino Blanco, Totolica, Calacoaya, Las Arboledas y otras); SMN (frentes fríos); OpenStreetMap (límites municipales); Copernicus DEM vía Open-Meteo (altitudes); <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (pronóstico automático de los próximos días, licencia CC BY 4.0). Versión de la app: <b>b539f30</b>.</p>
   </section>
 
   <footer><span>Versión 1 del modelo, emitida el 5 de octubre de 2026. Revisa las actualizaciones de NOAA (8 oct y 19 nov de 2026) y los avisos del SMN.</span><span><a href="../" style="color:var(--cold);font-weight:600">Versión para celular</a> · <button class="link" type="button" id="resetAll">Borrar todos mis ajustes</button></span></footer>
@@ -462,6 +463,33 @@ function avisoLluviaHtml(dias){
   var f=(dias||[]).filter(function(d){ return lluviaFuerte(d)&&d.d>=hoyISO(); }).slice(0,3); if(!f.length) return "";
   return '<div class="warn"><b>Riesgo de lluvia fuerte:</b> '+f.map(function(d){ return dayLabel(d.d)+' ('+d.pm.n5+' de '+d.pm.n+' modelos dan '+AVISO_MM+' mm o más; rango '+f1(d.pm.mn)+' a '+f1(d.pm.mx)+' mm)'; }).join("; ")+'. Es un aviso por acuerdo entre modelos, no una cantidad exacta.</div>';
 }
+/* ================= Ciclones tropicales cerca (GDACS, mejor esfuerzo) ================= */
+// Posición de los ciclones activos desde GDACS (ONU y Comisión Europea; permite lectura desde el navegador, el JSON del Centro Nacional de Huracanes no). No se envía ninguna ubicación: la distancia se calcula aquí
+// desde el punto de referencia del pronóstico. GDACS da el viento MÁXIMO del ciclón en toda su vida, no el actual: por eso no se muestra intensidad (enlace al NHC). Radios de analisis/ciclones_lluvia.py.
+var CIC_CERCA = 500, CIC_REGION = 800, CIC_VIGENCIA_H = 12;
+var CIC_NOTA = "Con un ciclón cerca la lluvia pronosticada es poco confiable: en 2023-2025 el pronóstico sobrestimó 12 mm en promedio los días con ciclón a menos de 500 km de Tacubaya.";
+function refLatLon(){ var m=/latitude=([-\d.]+)&longitude=([-\d.]+)/.exec(FC_URL); return [+m[1],+m[2]]; }
+function distKm(la1,lo1,la2,lo2){ var p=Math.PI/180, a=Math.pow(Math.sin((la2-la1)*p/2),2)+Math.cos(la1*p)*Math.cos(la2*p)*Math.pow(Math.sin((lo2-lo1)*p/2),2); return 12742*Math.asin(Math.sqrt(a)); }
+function rumboTxt(la1,lo1,la2,lo2){ var p=Math.PI/180, y=Math.sin((lo2-lo1)*p)*Math.cos(la2*p), x=Math.cos(la1*p)*Math.sin(la2*p)-Math.sin(la1*p)*Math.cos(la2*p)*Math.cos((lo2-lo1)*p), b=(Math.atan2(y,x)/p+360)%360; return ["norte","noreste","este","sureste","sur","suroeste","oeste","noroeste"][Math.round(b/45)%8]; }
+function urlCiclones(){ var h=new Date(), f=function(d){ return d.toISOString().slice(0,10); }; return "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=TC&alertlevel=Green;Orange;Red&fromDate="+f(new Date(h.getTime()-4*864e5))+"&toDate="+f(new Date(h.getTime()+864e5)); }
+function parseCiclones(j,ahora){
+  try{
+    var ref=refLatLon(), out=[]; ahora=ahora||Date.now();
+    (j.features||[]).forEach(function(f){
+      var p=f.properties||{}, c=f.geometry&&f.geometry.coordinates; if(p.eventtype!=="TC"||String(p.iscurrent)!=="true"||!c||c.length<2) return;
+      var fin=Date.parse((p.todate||"")+"Z"); if(isFinite(fin)&&ahora-fin>18*3600e3) return;      // ya sin avisos desde hace más de 18 h
+      var d=distKm(ref[0],ref[1],c[1],c[0]); out.push({n:String(p.eventname||"").replace(/-\d+$/,""), lat:c[1], lon:c[0], d:Math.round(d), r:rumboTxt(ref[0],ref[1],c[1],c[0])});
+    });
+    out.sort(function(a,b){ return a.d-b.d; }); return out;
+  }catch(e){ return null; }
+}
+function avisoCiclonHtml(cic){
+  if(!cic||!cic.l||Date.now()-cic.t>CIC_VIGENCIA_H*3600e3) return "";             // sin datos recientes NO se afirma que no hay ciclones
+  var cerca=cic.l.filter(function(c){ return c.d<=CIC_REGION; }), hh=new Date(cic.t).toLocaleTimeString("es-MX",{hour:"2-digit",minute:"2-digit"});
+  if(!cerca.length) return '<p class="small" style="margin:6px 0">Sin ciclones tropicales activos a menos de '+CIC_REGION+' km (GDACS, consultado '+hh+').</p>';
+  return '<div class="warn"><b>'+(cerca[0].d<=CIC_CERCA?'Ciclón tropical cerca:':'Ciclón tropical en la región:')+'</b> '+cerca.map(function(c){ return esc(c.n)+', a '+c.d+' km al '+c.r; }).join("; ")+'. '+CIC_NOTA+' Intensidad y trayectoria: <a href="https://www.nhc.noaa.gov/" target="_blank" rel="noopener">Centro Nacional de Huracanes</a>. <span class="small">(GDACS, '+hh+')</span></div>';
+}
+function avisosHtml(dias){ return avisoCiclonHtml(typeof CIC!=="undefined"?CIC:null)+avisoLluviaHtml(dias); }
 function fcLabel(t){ var d=new Date(t); return d.toLocaleDateString("es-MX",{day:"numeric",month:"short"})+", "+d.toLocaleTimeString("es-MX",{hour:"2-digit",minute:"2-digit"}); }
 
 
@@ -800,7 +828,7 @@ function renderDays(){
 }
 // Actualiza solo los resultados, sin redibujar la tabla
 function updateDayOutputs(){
-  document.getElementById("rainAlert").innerHTML=avisoLluviaHtml(days);
+  document.getElementById("rainAlert").innerHTML=avisosHtml(days);
   var z=BYID[cur], o=offs(z);
   document.querySelectorAll("#daysTbl tr[data-row]").forEach(function(tr){
     var d=days[+tr.getAttribute("data-row")]; if(!d) return;
@@ -979,6 +1007,7 @@ function renderAll(){ renderZone(); drawPoints(); renderDays(); renderWinter(); 
 
 /* ---- Pronóstico automático: el pronóstico de los días es de solo lectura: se reemplaza únicamente con el automático ---- */
 var fc=load("fc",null); if(!fc||typeof fc!=="object") fc={t:0,auto:true}; fc.t=+fc.t||0; fc.auto=true;
+var CIC=load("cic",null);           // ciclones tropicales activos (GDACS), última consulta
 var fcBusy=false;
 var fs=load("fcsky",null); if(fs&&typeof fs==="object") SKYMAP=fs;
 function guardarSky(nd){ var m={}, lim=Date.now()-30*864e5; Object.keys(SKYMAP).forEach(function(k){ if(new Date(k).getTime()>lim) m[k]=SKYMAP[k]; }); Object.keys(nd).forEach(function(k){ m[k]={c:nd[k].c,v:nd[k].v}; }); SKYMAP=m; save("fcsky",m); }
@@ -986,6 +1015,11 @@ function refreshSky(i){ var h=document.querySelector('[data-row="'+i+'"] .skyro'
 function setFcMsg(txt){ var el=document.getElementById("fcStatus"); if(!el) return;
   el.textContent = txt || (fc.auto&&fc.t ? "Pronóstico automático de Open-Meteo para Tacubaya, actualizado el "+fcLabel(fc.t)+". Es un modelo global, no el pronóstico oficial del SMN: úsalo como referencia. Las temperaturas están corregidas por el sesgo que mostró frente a la estación (el valor original de Open-Meteo aparece debajo); la lluvia no se corrige." : "Pronóstico de ejemplo, solo ilustrativo: aún no se carga el automático. Usa «Traer pronóstico automático»."); }
 function saveDays(){ save("days",days); }
+function traerCiclones(){     // mejor esfuerzo: si falla se conserva lo guardado y no se afirma nada
+  var c3=window.AbortController?new AbortController():null, t3=setTimeout(function(){ if(c3) c3.abort(); },12000);
+  return fetch(urlCiclones(), c3?{signal:c3.signal}:{}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(j){ var l=parseCiclones(j); if(l){ CIC={t:Date.now(), l:l}; save("cic",CIC); renderAll(); } }).catch(function(){}).then(function(){ clearTimeout(t3); });
+}
 function traerLluvia(){      // mejor esfuerzo: si falla, queda la lluvia del pronóstico principal
   var c2=window.AbortController?new AbortController():null, t2=setTimeout(function(){ if(c2) c2.abort(); },12000);
   return fetch(FC_URL_LLUVIA, c2?{signal:c2.signal}:{}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
@@ -995,7 +1029,7 @@ function traerPronostico(){
   if(fcBusy) return; fcBusy=true; var b=document.getElementById("fcBtn"); if(b) b.disabled=true; setFcMsg("Consultando Open-Meteo…");
   var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){ if(ctl) ctl.abort(); },12000);
   fetch(FC_URL, ctl?{signal:ctl.signal}:{}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(j){ var r=parseForecast(j,hoyISO()); if(!r) throw new Error("vacío"); guardarSky(r.cielo); days=r.dias; save("days",days); fc={t:Date.now(),auto:true}; save("fc",fc); renderAll(); setFcMsg(); return traerLluvia(); })
+    .then(function(j){ var r=parseForecast(j,hoyISO()); if(!r) throw new Error("vacío"); guardarSky(r.cielo); days=r.dias; save("days",days); fc={t:Date.now(),auto:true}; save("fc",fc); renderAll(); setFcMsg(); return traerLluvia().then(traerCiclones); })
     .catch(function(e){ setFcMsg(e&&e.message==="429" ? "Open-Meteo alcanzó su límite diario de consultas para esta red (el límite es por conexión a internet, no de la app). Se conservan los días actuales: reintenta más tarde o con datos móviles." : "No se pudo obtener el pronóstico automático (sin conexión o servicio no disponible). Se conservan los días actuales."); })
     .then(function(){ clearTimeout(to); fcBusy=false; if(b) b.disabled=false; });
 }
