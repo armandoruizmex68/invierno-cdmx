@@ -1,5 +1,5 @@
 /* GENERADO por app/construir.py desde sw_plantilla.js (la versión es el hash de index.html). No editar sw.js. */
-var VERSION = "9d26c2604d";
+var VERSION = "be62eb054c";
 var CACHE = "invierno-cdmx-" + VERSION;
 var NUCLEO = ["./", "index.html", "manifest.webmanifest", "iconos/icono-192.png", "iconos/icono-512.png", "iconos/apple-touch-icon.png"];
 
